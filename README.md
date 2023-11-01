@@ -31,6 +31,14 @@ alias cop='catkin_make --only-pkg-with-deps'
 alias coc='catkin clean'
 alias cca='catkin clean -y'
 
+cmake /home/jetson/catkin_ws/src -DCATKIN_WHITELIST_PACKAGES= -
+
+cmake: 이것은 소프트웨어 프로젝트의 빌드 프로세스를 관리하기 위한 널리 사용되는 빌드 시스템인 CMake 명령입니다.
+
+/home/jetson/catkin_ws/src: 이것은 ROS 패키지가 위치한 소스 코드 디렉토리의 경로입니다.
+
+-DCATKIN_WHITELIST_PACKAGES=: 이 부분은 CMake 변수를 지정하는데, 이 경우에는 아무 패키지도 화이트리스트에 포함되지 않았음을 나타냅니다.
+
 # mirco USB 케이블 연결을 사용할 경우, jetson master
 export ROS_MASTER_URI=http://192.168.55.1:11311
 export ROS_IP=192.168.55.100
@@ -50,3 +58,16 @@ jetson@jp4512G:~/catkin_ws$ roscore
 jetson@jp4512G:~/catkin_ws$ rosrun turtlesim turtlesim_node
 # 터미널 #3
 jetson@jp4512G:~/catkin_ws$ rosrun turtlesim turtle_teleop_key
+
+# jessicar install on Jetson
+cd ~/catkin_ws/src
+git clone https://github.com/zeta0707/jessicar.git
+cd ~/catkin_ws
+cd ~/Downloads/opencvDownTo34
+sudo patch -p1 /opt/ros/melodic/share/cv_bridge/cmake/cv_bridgeConfig.cmake -p1 < cv_brige.patch
+cd ~/catkin_ws
+
+# joystick
+sudo apt-get install joystick
+cd /dev/input
+ls js*
