@@ -66,7 +66,12 @@ cd ~/catkin_ws
 cd ~/Downloads/opencvDownTo34
 sudo patch -p1 /opt/ros/melodic/share/cv_bridge/cmake/cv_bridgeConfig.cmake -p1 < cv_brige.patch
 cd ~/catkin_ws
+#Teleop by keyboard
+# terminal #1
+$ roslaunch jessicar_control keyboard_control.launch
 
+# terminal #2
+$ roslaunch jessicar_teleop jessicar_teleop_key.launch
 # joystick
 sudo apt-get install joystick
 cd /dev/input
