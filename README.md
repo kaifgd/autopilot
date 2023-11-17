@@ -24,13 +24,14 @@ sudo apt update
 git clone https://github.com/zeta0707/installROS.git
 cd installROS
 ./install-ros.sh
+# .bashrc 수정
 gedit ~/.bashrc 
 # 파일 제일 아래에 다음과 같은 내용 입력
 alias cma='catkin_make -DCATKIN_WHITELIST_PACKAGES=""'
 alias cop='catkin_make --only-pkg-with-deps'
 alias coc='catkin clean'
 alias cca='catkin clean -y'
-
+# 용어 설명
 cmake /home/jetson/catkin_ws/src -DCATKIN_WHITELIST_PACKAGES= -
 
 cmake: 이것은 소프트웨어 프로젝트의 빌드 프로세스를 관리하기 위한 널리 사용되는 빌드 시스템인 CMake 명령입니다.
@@ -66,13 +67,30 @@ cd ~/catkin_ws
 cd ~/Downloads/opencvDownTo34
 sudo patch -p1 /opt/ros/melodic/share/cv_bridge/cmake/cv_bridgeConfig.cmake -p1 < cv_brige.patch
 cd ~/catkin_ws
-#Teleop by keyboard
-# terminal #1
-$ roslaunch jessicar_control keyboard_control.launch
-
-# terminal #2
-$ roslaunch jessicar_teleop jessicar_teleop_key.launch
-# joystick
+# Teleop by joystick
+Jetson USB port에 USB dongle을 연결하고, gamepad 뒷면 ON/OFF 버튼을 ON으로 이동시켜주세요. 그 후 HOME 버튼을 한 번 눌러 붉은 LED 하나가 켜지는지 확인해주세요. 
+# joystick 패키지 설치
 sudo apt-get install joystick
 cd /dev/input
 ls js*
+# js0 확인
+jetson@jp4612GCv346Py37:/dev/input$ ls js*
+js0
+# joystick 동작 확인
+왼쪽 패드를 좌우로 움직이면 Axe X가 -32767 ~32767 까지 변한다. 패드를 아래 위로 움직이면 Axe Y가 역시 -32767 ~32767까지 변합니다.
+# Teleop by keyboard
+# terminal #1
+$ roslaunch jessicar_control keyboard_control.launch
+# terminal #2
+$ roslaunch jessicar_teleop jessicar_teleop_key.launch
+# Teleop by keyboard
+# 실행
+# terminal #1
+$ roslaunch jessicar_control keyboard_control.launch
+# terminal #2
+$ roslaunch jessicar_teleop jessicar_teleop_key.launch
+# Bash
+zeta@changwhan-asus:~/catkin_ws$ rostopic list
+/cmd_vel
+/rosout
+/rosout_agg
