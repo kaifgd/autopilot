@@ -83,12 +83,6 @@ js0
 $ roslaunch jessicar_control keyboard_control.launch
 # terminal #2
 $ roslaunch jessicar_teleop jessicar_teleop_key.launch
-# Teleop by keyboard
-# 실행
-# terminal #1
-$ roslaunch jessicar_control keyboard_control.launch
-# terminal #2
-$ roslaunch jessicar_teleop jessicar_teleop_key.launch
 # Bash
 zeta@changwhan-asus:~/catkin_ws$ rostopic list
 /cmd_vel
